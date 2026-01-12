@@ -243,6 +243,9 @@ git push heroku main
 cd client
 # Use Vercel, Netlify, or similar services
 ```
+## Live Links
+Frontend: https://todo-merns.netlify.app
+Backend: https://to-do-tc9h.onrender.com
 
 ### Deploy with Docker
 ```bash
