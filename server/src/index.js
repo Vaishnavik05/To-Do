@@ -4,8 +4,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
-import todoRoutes from './routes/todoRoutes.js';
-import errorHandler from './middleware/errorHandler.js';
+import todoRoutes from './routes/todoRoutes';
+import errorHandler from './middleware/errorHandler';
 
 dotenv.config();
 
