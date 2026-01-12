@@ -1,16 +1,19 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-require('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 
-const todoRoutes = require('./routes/todoRoutes');
-const errorHandler = require('./middleware/errorHandler');
+import todoRoutes from './routes/todoRoutes.js';
+import errorHandler from './middleware/errorHandler.js';
+
+dotenv.config();
 
 const app = express();
 
 // Middleware
-app.use(cors());
+const allowed = process.env.ALLOWED_ORIGIN ? process.env.ALLOWED_ORIGIN.split(',') : '*';
+app.use(cors({ origin: allowed === '*' ? '*' : allowed }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -42,8 +45,7 @@ const connectDB = async () => {
     if (/SSL|tls|certificate|alert/.test(String(error).toLowerCase())) {
       console.error('It looks like a TLS/SSL error. For diagnosis only, you can set TLS_ALLOW_INVALID_CERTS=true in server/.env and restart to see if connection succeeds.');
     }
-
-    process.exit(1);
+    console.error('MongoDB connection failed:', error.message);
   }
 };
 
