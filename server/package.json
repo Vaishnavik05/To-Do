@@ -2,7 +2,6 @@
   "name": "todo-server",
   "version": "1.0.0",
   "description": "TODO App Backend Server",
-  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
